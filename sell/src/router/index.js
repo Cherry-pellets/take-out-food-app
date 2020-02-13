@@ -29,5 +29,5 @@ export default new Router({
       component: ratings
     }
   ],
-  linkActiveClass: 'active'
+  linkActiveClass: 'active' // 点击导航栏某一项时，颜色发生改变
 });
