@@ -12,12 +12,15 @@
         <router-link to="/seller">商家</router-link>
       </div>
     </div>
-    <router-view :seller="seller"></router-view>
+    <keep-alive>
+      <router-view :seller="seller"></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
     import header from './components/header/header.vue';
+    import {urlParse} from './common/js/util';
 
     const ERR_OK = 0;
 
@@ -25,14 +28,22 @@
         /* name: 'App', */
         data() {
             return {
-                seller: {}
+                seller: {
+                    id: (() => {
+                        let queryParam = urlParse();
+                        return queryParam.id;
+                    })()
+                }
             };
         },
         created() {
-            this.$http.get('/api/seller').then((response) => {
+            this.$http.get('/api/seller?=' + this.seller.id).then((response) => {
                 response = response.body;
+                // console.log(this.seller.id);
                 if (response.errno === ERR_OK) {
                     this.seller = response.data;
+                    this.seller = Object.assign({}, this.seller, response.data);
+                    // 给对象拓展属性，在实现收藏商家的功能时添加的
                 }
             });
         },

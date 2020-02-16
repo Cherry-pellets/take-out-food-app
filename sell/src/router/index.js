@@ -14,14 +14,14 @@ export default new Router({
       component: goods
     },
     {
-      path: '/goods',
-      name: 'goods',
-      component: goods
-    },
-    {
       path: '/seller',
       name: 'seller',
       component: seller
+    },
+    {
+      path: '/goods',
+      name: 'goods',
+      component: goods
     },
     {
       path: '/ratings',

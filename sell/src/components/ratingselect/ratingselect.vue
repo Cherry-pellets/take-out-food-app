@@ -54,26 +54,34 @@
                 }
             }
         },
+        data() {
+            return {
+                ratings1: this.ratings,
+                selectType1: this.selectType,
+                onlyContent1: this.onlyContent,
+                desc1: this.desc
+            };
+        },
         computed: {
             positives() {
-                return this.ratings.filter((rating) => { // 筛选rateType=0的评论(即好评)
+                return this.ratings1.filter((rating) => { // 筛选rateType=0的评论(即好评)
                     return rating.rateType === POSITIVE;
                 });
             },
             negatives() {
-                return this.ratings.filter((rating) => { // 筛选rateType=1的评论(即好评)
+                return this.ratings1.filter((rating) => { // 筛选rateType=1的评论(即好评)
                     return rating.rateType === NEGATIVE;
                 });
             }
         },
         methods: {
             select(type) {
-                this.selectType = type;
+                this.selectType1 = type;
                 this.$emit('ratingtype-select', type);// 向父组件传递
             },
             toggleContent() {
-                this.onlyContent = !this.onlyContent;
-                this.$emit('content-toggle', this.onlyContent);// 向父组件传递
+                this.onlyContent1 = !this.onlyContent1;
+                this.$emit('content-toggle', this.onlyContent1);// 向父组件传递
             }
         }
     };
