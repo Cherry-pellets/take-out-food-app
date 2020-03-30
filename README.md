@@ -1,2 +1,2 @@
-# take-out food -app
-仿饿了么/外卖/美团外卖
+# take-out food 
+移动端点餐app
